@@ -2,12 +2,10 @@ package com.example.learning_management_system.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,4 +23,15 @@ public class Course {
     private String title;
 
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
+
+    @ManyToMany(mappedBy = "sCourses")
+    private Set<Student> students;
+
+    @OneToMany(mappedBy = "course")
+    private Set<Module> modules;
+
 }
