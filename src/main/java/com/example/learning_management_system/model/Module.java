@@ -11,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "modules")
 public class Module {
 
     @Id
@@ -18,6 +19,8 @@ public class Module {
     private Long id;
 
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @ManyToOne
@@ -25,5 +28,5 @@ public class Module {
     private Course course;
 
     @OneToMany(mappedBy = "module")
-    private Set<Progress> progresses;
+    private Set<Progress> progressEntries;
 }

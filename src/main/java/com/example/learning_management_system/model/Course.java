@@ -19,16 +19,14 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "Title require!")
     private String title;
-
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    @ManyToMany(mappedBy = "sCourses")
+    @ManyToMany(mappedBy = "enrolledCourses")
     private Set<Student> students;
 
     @OneToMany(mappedBy = "course")

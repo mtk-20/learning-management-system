@@ -16,6 +16,6 @@ public class ModuleDto {
     private Long id;
     private String title;
     private String content;
-    private CourseDto course;
-    private Set<ProgressDto> progressDtos;
+    private Long courseId;
+
 }

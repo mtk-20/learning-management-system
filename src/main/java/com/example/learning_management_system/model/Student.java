@@ -28,8 +28,8 @@ public class Student {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private Set<Course> sCourses;
+    private Set<Course> enrolledCourses;
 
     @OneToMany(mappedBy = "student")
-    private Set<Progress> progresses;
+    private Set<Progress> progressEntries;
 }

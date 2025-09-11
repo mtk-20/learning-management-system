@@ -21,5 +21,5 @@ public class Teacher {
     private String email;
 
     @OneToMany(mappedBy = "teacher")
-    private Set<Course> tCourses;
+    private Set<Course> courses;
 }
