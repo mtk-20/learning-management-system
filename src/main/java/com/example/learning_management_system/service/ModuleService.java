@@ -36,7 +36,7 @@ public class ModuleService {
 
     // R
     public ModuleDto getModuleById(long id) {
-        return moduleRepository.findById(id).map(moduleMapper::toModuleDto).orElseThrow(()  -> new IdNotFoundException("No Module ID " + id));
+        return moduleRepository.findById(id).map(moduleMapper::toModuleDto).orElseThrow(() -> new IdNotFoundException("No Module ID " + id));
     }
 
     public List<ModuleDto> getAllModule() {
@@ -57,8 +57,7 @@ public class ModuleService {
         if (moduleRepository.existsById(id)) {
             moduleRepository.deleteById(id);
             return ResponseEntity.ok("Module id " + id + " deleted.");
-        }
-        else {
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No Module ID " + id);
         }
     }
