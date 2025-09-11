@@ -45,7 +45,7 @@ public class StudentService {
         return studentRepository.findById(id).map(studentMapper::toStudentDto).orElseThrow(() -> new IdNotFoundException("No Student ID " + id));
     }
 
-    // U
+    // Update
     public ResponseEntity<StudentDto> updateStudent(long id, StudentDto studentDto) {
         Student update = studentRepository.findById(id).orElseThrow(() -> new IdNotFoundException("No Student ID " + id));
         update.setFirstName(studentDto.getFirstName());
