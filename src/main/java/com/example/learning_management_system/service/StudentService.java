@@ -56,7 +56,7 @@ public class StudentService {
         return ResponseEntity.ok(updatedStudent);
     }
 
-    // D
+    // Delete
     public ResponseEntity<String> deleteStudent(long id) {
         if (studentRepository.existsById(id)) {
             studentRepository.deleteById(id);
