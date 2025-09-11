@@ -16,5 +16,5 @@ public class TeacherDto {
     private Long id;
     private String name;
     private String email;
-    private Set<CourseDto> tCourses;
+    private Set<Long> courseIds;
 }

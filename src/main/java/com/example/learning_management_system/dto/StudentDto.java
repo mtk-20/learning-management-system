@@ -17,5 +17,5 @@ public class StudentDto {
     private String firstName;
     private String lastName;
     private String email;
-    private Set<CourseDto> sCourses;
+    private Set<Long> enrolledCourseIds;
 }
