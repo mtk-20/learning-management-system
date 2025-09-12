@@ -3,6 +3,7 @@ package com.example.learning_management_system.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -20,8 +21,8 @@ public class CourseDto {
     private String description;
 
     private Long teacherId;
-    private Set<Long> studentIds;
-    private Set<Long> moduleIds;
+    private Set<Long> studentIds = new HashSet<>();
+    private Set<Long> moduleIds = new HashSet<>();
 
 
     public void setDescription(String description) {

@@ -54,6 +54,7 @@ public class ProgressService {
     public ResponseEntity<ProgressDto> updateProgress(long id, ProgressDto progressDto) {
         Progress update = progressRepository.findById(id).orElseThrow(() -> new IdNotFoundException("No Student ID " + progressDto.getId()));
         update.setStatus(progressDto.getStatus());
+        update.setCompletionDate(progressDto.getCompletionDate());
         if (progressDto.getStudentId() != null) {
             Student student = studentRepository.findById(progressDto.getStudentId()).orElseThrow(() -> new IdNotFoundException("No Student ID " + progressDto.getStudentId()));
             update.setStudent(student);

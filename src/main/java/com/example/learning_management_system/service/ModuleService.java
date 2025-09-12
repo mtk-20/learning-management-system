@@ -48,6 +48,10 @@ public class ModuleService {
         Module update = moduleRepository.findById(id).orElseThrow(() -> new IdNotFoundException("No Module ID " + moduleDto.getId()));
         update.setTitle(moduleDto.getTitle());
         update.setContent(moduleDto.getContent());
+        // optional for update module.courseId
+        if (moduleDto.getCourseId() != null) {
+            update.setCourse(courseRepository.findById(moduleDto.getCourseId()).orElseThrow(() -> new IdNotFoundException("No Teacher ID " + moduleDto.getCourseId())));
+        }
         ModuleDto updatedModule = moduleMapper.toModuleDto(moduleRepository.save(update));
         return ResponseEntity.ok(updatedModule);
     }
