@@ -45,6 +45,7 @@ public class CourseService {
         if (courseDto.getModuleIds() != null && !courseDto.getModuleIds().isEmpty()) {
             Set<Module> modules = new HashSet<>(moduleRepository.findAllById(courseDto.getModuleIds()));
             course.setModules(modules);
+            modules.forEach(m -> m.setCourse(course));
         }
         CourseDto newCourse = courseMapper.toCourseDto(courseRepository.save(course));
         return ResponseEntity.ok(newCourse);
@@ -64,6 +65,19 @@ public class CourseService {
         Course update = courseRepository.findById(id).orElseThrow(() -> new IdNotFoundException("NO Course ID " + id));
         update.setTitle(courseDto.getTitle());
         update.setDescription(courseDto.getDescription());
+        if (courseDto.getTeacherId() != null) {
+            Teacher teacher = teacherRepository.findById(courseDto.getTeacherId()).orElseThrow(() -> new IdNotFoundException("No Teacher ID " + courseDto.getTeacherId()));
+            update.setTeacher(teacher);
+        }
+        if (courseDto.getStudentIds() != null && !courseDto.getStudentIds().isEmpty()) {
+            Set<Student> students = new HashSet<>(studentRepository.findAllById(courseDto.getStudentIds()));
+            update.setStudents(students);
+        }
+        if (courseDto.getModuleIds() != null && !courseDto.getModuleIds().isEmpty()) {
+            Set<Module> modules = new HashSet<>(moduleRepository.findAllById(courseDto.getModuleIds()));
+            update.setModules(modules);
+            modules.forEach(m -> m.setCourse(update));
+        }
         CourseDto updatedCourse = courseMapper.toCourseDto(courseRepository.save(update));
         return ResponseEntity.ok(updatedCourse);
     }

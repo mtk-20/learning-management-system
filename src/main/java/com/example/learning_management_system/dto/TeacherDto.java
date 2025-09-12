@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -16,5 +17,5 @@ public class TeacherDto {
     private Long id;
     private String name;
     private String email;
-    private Set<Long> courseIds;
+    private Set<Long> courseIds = new HashSet<>();
 }

@@ -28,7 +28,7 @@ public class StudentService {
     // C
     public ResponseEntity<StudentDto> createStudent(StudentDto studentDto) {
         Student student = studentMapper.toStudentEntity(studentDto);
-        if (studentDto.getEnrolledCourseIds() != null) {
+        if (studentDto.getEnrolledCourseIds() != null){ //&& !studentDto.getEnrolledCourseIds().isEmpty()) {
             Set<Course> courses = new HashSet<>(courseRepository.findAllById(studentDto.getEnrolledCourseIds()));
             student.setEnrolledCourses(courses);
         }
@@ -52,6 +52,11 @@ public class StudentService {
         update.setLastName(studentDto.getLastName());
         update.setEmail(studentDto.getEmail());
         update.setPassword(studentDto.getPassword());
+        // optional for update student.enrolledCourseIds
+        if (studentDto.getEnrolledCourseIds() != null) {
+            Set<Course> courses = new HashSet<>(courseRepository.findAllById(studentDto.getEnrolledCourseIds()));
+            update.setEnrolledCourses(courses);
+        }
         StudentDto updatedStudent = studentMapper.toStudentDto(studentRepository.save(update));
         return ResponseEntity.ok(updatedStudent);
     }

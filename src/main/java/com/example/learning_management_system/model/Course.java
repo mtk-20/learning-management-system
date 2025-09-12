@@ -3,8 +3,7 @@ package com.example.learning_management_system.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,9 +26,9 @@ public class Course {
     private Teacher teacher;
 
     @ManyToMany(mappedBy = "enrolledCourses")
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 
     @OneToMany(mappedBy = "course")
-    private Set<Module> modules;
+    private Set<Module> modules = new HashSet<>();
 
 }

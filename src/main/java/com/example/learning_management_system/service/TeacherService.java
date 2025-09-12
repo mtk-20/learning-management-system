@@ -29,9 +29,10 @@ public class TeacherService {
     // C
     public ResponseEntity<TeacherDto> createTeacher(TeacherDto teacherDto) {
         Teacher teacher = teacherMapper.toTeacherEntity(teacherDto);
-        if (teacherDto.getCourseIds() != null) {
+        if (teacherDto.getCourseIds() != null && !teacherDto.getCourseIds().isEmpty()) {
             Set<Course> courses = new HashSet<>(courseRepository.findAllById(teacherDto.getCourseIds()));
             teacher.setCourses(courses);
+            courses.forEach(course -> course.setTeacher(teacher));
         }
 
         TeacherDto newTeacher = teacherMapper.toTeacherDto(teacherRepository.save(teacher));
@@ -52,6 +53,12 @@ public class TeacherService {
         Teacher update = teacherRepository.findById(id).orElseThrow(() -> new IdNotFoundException("No Teacher ID " + id));
         update.setName(teacherDto.getName());
         update.setEmail(teacherDto.getEmail());
+        // optional for update teacher.courseId
+        if (teacherDto.getCourseIds() != null) {
+            Set<Course> courses = new HashSet<>(courseRepository.findAllById(teacherDto.getCourseIds()));
+            update.setCourses(courses);
+            courses.forEach(c -> c.setTeacher(update));
+        }
         TeacherDto updatedTeacher = teacherMapper.toTeacherDto(teacherRepository.save(update));
         return ResponseEntity.ok(updatedTeacher);
     }
