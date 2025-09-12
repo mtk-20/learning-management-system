@@ -32,5 +32,4 @@ public class CourseDto {
             this.description = description;
         }
     }
-
 }
