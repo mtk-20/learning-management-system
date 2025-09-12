@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface ModuleMapper {
 
     ModuleDto toModuleDto(Module module);
+
     Module toModuleEntity(ModuleDto moduleDto);
 }

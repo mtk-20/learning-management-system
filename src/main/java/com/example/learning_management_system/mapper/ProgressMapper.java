@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface ProgressMapper {
 
     ProgressDto toProgressDto(Progress progress);
+
     Progress toProgressEntity(ProgressDto progressDto);
 }

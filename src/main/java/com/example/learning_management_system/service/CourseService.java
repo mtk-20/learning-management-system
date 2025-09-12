@@ -35,7 +35,7 @@ public class CourseService {
     public ResponseEntity<CourseDto> createCourse(CourseDto courseDto) {
         Course course = courseMapper.toCourseEntity(courseDto);
         if (courseDto.getTeacherId() != null) {
-            Teacher teacher = teacherRepository.findById(courseDto.getTeacherId()).orElseThrow(() -> new IdNotFoundException("No teacher id " + courseDto.getTeacherId()));
+            Teacher teacher = teacherRepository.findById(courseDto.getTeacherId()).orElseThrow(() -> new IdNotFoundException("No Teacher ID " + courseDto.getTeacherId()));
             course.setTeacher(teacher);
         }
         if (courseDto.getStudentIds() != null && !courseDto.getStudentIds().isEmpty()) {
@@ -61,7 +61,7 @@ public class CourseService {
 
     // U
     public ResponseEntity<CourseDto> updateCourse(long id, CourseDto courseDto) {
-        Course update = courseRepository.findById(id).orElseThrow(() -> new IdNotFoundException("NO SUCH ID " + id));
+        Course update = courseRepository.findById(id).orElseThrow(() -> new IdNotFoundException("NO Course ID " + id));
         update.setTitle(courseDto.getTitle());
         update.setDescription(courseDto.getDescription());
         CourseDto updatedCourse = courseMapper.toCourseDto(courseRepository.save(update));

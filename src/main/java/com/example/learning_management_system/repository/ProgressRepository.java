@@ -8,7 +8,9 @@ import java.util.List;
 public interface ProgressRepository extends JpaRepository<Progress, Long> {
 
     List<Progress> findByStudentId(Long studentId);
+
     List<Progress> findByModuleId(Long moduleId);
+
     Progress findByStudentIdAndModuleId(Long studentId, Long moduleId);
 
 }

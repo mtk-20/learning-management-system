@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class ProgressDto {
 
     private Long id;
-    private String status;
+    private Progress.Status status;
     private LocalDate completionDate;
     private Long studentId;
     private Long moduleId;
