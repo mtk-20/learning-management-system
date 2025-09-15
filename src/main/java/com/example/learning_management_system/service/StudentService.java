@@ -52,7 +52,6 @@ public class StudentService {
         update.setLastName(studentDto.getLastName());
         update.setEmail(studentDto.getEmail());
         update.setPassword(studentDto.getPassword());
-        // optional for update student.enrolledCourseIds
         if (studentDto.getEnrolledCourseIds() != null) {
             Set<Course> courses = new HashSet<>(courseRepository.findAllById(studentDto.getEnrolledCourseIds()));
             update.setEnrolledCourses(courses);

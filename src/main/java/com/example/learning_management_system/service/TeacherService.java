@@ -53,7 +53,6 @@ public class TeacherService {
         Teacher update = teacherRepository.findById(id).orElseThrow(() -> new IdNotFoundException("No Teacher ID " + id));
         update.setName(teacherDto.getName());
         update.setEmail(teacherDto.getEmail());
-        // optional for update teacher.courseId
         if (teacherDto.getCourseIds() != null) {
             Set<Course> courses = new HashSet<>(courseRepository.findAllById(teacherDto.getCourseIds()));
             update.setCourses(courses);
